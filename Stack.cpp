@@ -2,120 +2,102 @@
 
 
 template<class T_type>
+Stack<T_type>::Stack(int size )
+{
+    arr = new T_type[size];
+    capacity = size;
+    top = -1;
+}
+
+template<class T_type>
+Stack<T_type>::~Stack()
+{
+    delete[] arr;
+}
+
+template<class T_type>
 void Stack<T_type>::Push(T_type element)
 {
-	T_type* tmp;
-	tmp = arr;
-	arr = new T_type[topIndex+1];
-	topIndex++;
-	for (int i = 0; i < topIndex - 1; i++)
-	{
-		arr[i] = tmp[i];
-	}
-		
-	arr[topIndex - 1] = element;
-
-	if (topIndex > 1)
-		delete[] tmp;
-	return *this;
+    if (IsFull())
+        return 0;
+    arr[++top] = element;
 }
 
 
 template<class T_type>
 T_type Stack<T_type>::Pop()
 {
-	if (topIndex == 0)
+    if (IsEmpty())
 		return 0; 
-	topIndex--;
-	return arr[topIndex];
+    return arr[top--];
 }
 
 template<class T_type>
 int Stack<T_type>::GetCount() const
 {
-	return topIndex;
+	return top + 1;
 }
 
 template<class T_type>
-int Stack<T_type>::peek()
+T_type Stack<T_type>::peek()
 {
 	if (!IsEmpty())
-		return arr[topIndex];
+		return arr[top];
 }
 
 template<class T_type>
 bool Stack<T_type>::IsEmpty() const
 {
-	return topIndex == 0;
+	return top == -1   ;
 }
 
 template<class T_type>
 bool Stack<T_type>::IsFull() const
 {
-	return topIndex >= topIndex;
+	return top == capacity - 1;
 }
 
 
 	template<class T_type>
-	bool Stack<T_type>::checkString(string expr)
+	bool Stack<T_type>::checkString(T_type expression)
 	{
-        char x;
-        Stack s;
-       
-        for (int i = 0; i < expr.length(); i++)
-        {
-            if (expr[i] == '(' || expr[i] == '[' || expr[i] == '{')
-            {
-                
-                s.Push(expr[i]);
-                continue;
-            }
-
-           
-            if (s.IsEmpty())
-                return false;
-
-            switch (expr[i])
-            {
-            case ')':
-
-                x = s.GetCount();
-                s.GetCount();
-                if (x == '{' || x == '[')
-                    return false;
+        Stack other;
+        for (auto ch : expression) {
+            switch (ch) {
+            case '(':
+            case '[': 
+            case '{': 
+                other.Push(ch);
                 break;
-
-            case '}':
-
-                x = s.GetCount();
-                s.pop();
-                if (x == '(' || x == '[')
-                    return false;
+            case ')': 
+                if (other.IsEmpty() || other.GetCount() != '(') return false;
+                other.Pop();
                 break;
-
-            case ']':
-                x = s.GetCount();
-                s.GetCount();
-                if (x == '(' || x == '{')
-                    return false;
+            case ']': 
+                if (other.IsEmpty() || other.GetCount() != '[') return false;
+                other.Pop();
+                break;
+            case '}': 
+                if (other.IsEmpty() || other.GetCount() != '{') return false;
+                other.Pop();
                 break;
             }
         }
-        return (s.IsEmpty());
+        return other.IsEmpty(); 
 	}
 
 	template<class T_type>
-void Stack<T_type>::check(string expr)
+void Stack<T_type>::check(T_type expression)
 {
-    if (checkString(expr)) {
+    if (checkString(expression)) {
         cout << "Correct arithmetic expression" << endl;
-        cout << expr << endl;
+        cout << expression << endl;
         cout << "Balanced";
     }
     else
     {
         cout << "Not Balanced";
-    cout << expr << endl;
+    cout << expression << endl;
 	}
 
 }

@@ -2,26 +2,23 @@
 #include<iostream>
 #include<string>
 using namespace std;
-
+#define SIZE 100
 template<class T_type>
 
 class  Stack
 {
 private:
 	T_type* arr;
-	int max;
-	int topIndex;
+	int top;
+	int capacity;
 
 
 
 public:
-	Stack() { topIndex = 0;  arr = nullptr; max = 0; };
-	Stack(int topIndex)
-	{
-		this->topIndex = topIndex;
-	};
+	Stack(int size = SIZE) ;
+	
 
-	~Stack() = default;
+	~Stack();
 
 	void Push(T_type element);
 
@@ -29,12 +26,12 @@ public:
 
 	int GetCount()const;
 
-	int peek();
+	T_type peek();
 	bool IsEmpty()const;
 
 	bool IsFull()const;
 
 
-	bool checkString(string expr);
-	void check(string expr);
+	bool checkString(T_type expression);
+	void check(T_type expression);
 };
