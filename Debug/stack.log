@@ -1,0 +1,3 @@
+﻿  Stack.cpp
+Source.obj : error LNK2019: unresolved external symbol "public: void __thiscall Stack<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >::check(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?check@?$Stack@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function _main
+E:\hm\stack\Debug\stack.exe : fatal error LNK1120: 1 unresolved externals

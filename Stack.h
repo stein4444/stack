@@ -1,7 +1,6 @@
 #pragma once
-#include<stack>
 #include<iostream>
-
+#include<string>
 using namespace std;
 
 template<class T_type>
@@ -16,7 +15,7 @@ private:
 
 
 public:
-	Stack() { topIndex = 0, arr = nullptr };
+	Stack() { topIndex = 0;  arr = nullptr; max = 0; };
 	Stack(int topIndex)
 	{
 		this->topIndex = topIndex;
@@ -34,4 +33,8 @@ public:
 	bool IsEmpty()const;
 
 	bool IsFull()const;
+
+
+	bool checkString(string expr);
+	void check(string expr);
 };

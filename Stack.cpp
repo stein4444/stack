@@ -54,3 +54,68 @@ bool Stack<T_type>::IsFull() const
 {
 	return topIndex >= topIndex;
 }
+
+
+	template<class T_type>
+	bool Stack<T_type>::checkString(string expr)
+	{
+        char x;
+        Stack s;
+       
+        for (int i = 0; i < expr.length(); i++)
+        {
+            if (expr[i] == '(' || expr[i] == '[' || expr[i] == '{')
+            {
+                
+                s.Push(expr[i]);
+                continue;
+            }
+
+           
+            if (s.IsEmpty())
+                return false;
+
+            switch (expr[i])
+            {
+            case ')':
+
+                x = s.GetCount();
+                s.GetCount();
+                if (x == '{' || x == '[')
+                    return false;
+                break;
+
+            case '}':
+
+                x = s.GetCount();
+                s.pop();
+                if (x == '(' || x == '[')
+                    return false;
+                break;
+
+            case ']':
+                x = s.GetCount();
+                s.GetCount();
+                if (x == '(' || x == '{')
+                    return false;
+                break;
+            }
+        }
+        return (s.IsEmpty());
+	}
+
+	template<class T_type>
+void Stack<T_type>::check(string expr)
+{
+    if (checkString(expr)) {
+        cout << "Correct arithmetic expression" << endl;
+        cout << expr << endl;
+        cout << "Balanced";
+    }
+    else
+    {
+        cout << "Not Balanced";
+    cout << expr << endl;
+	}
+
+}

@@ -1,0 +1,2 @@
+E:\hm\stack\Debug\stack.exe
+E:\hm\stack\Debug\stack.pdb
